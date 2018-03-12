@@ -1,11 +1,17 @@
 import sqlite3
 
-def get_url(url_id,db):
-    con = sqlite3.connect(db)
-    cur = con.cursor()
-    cur.execute("SELECT url from moz_places where id == {id};".format(db=db, id=url_id))
-    data = cur.fetchone()
-    return data
+class Folder:
+    def __init__(self, folder_id, title, parent="None"):
+        self.id = folder_id
+        self.title = title
+        self.parent = parent
+
+class Bookmark:
+    def __init__(self, url_id, title, url="None", parent="None"):
+        self.id = url_id
+        self.title = title
+        self.url = url
+        self.parent = parent
 
 def query(q,db,mode="all"):
     try:
@@ -29,6 +35,8 @@ def read_config(file_name):
     f = open(file_name, 'r')
     path = f.read().split(',')[0]
     return path
+
+
 
 # fk = url lookup id in moz_places table (url_table)
 # type 1 == bookmark

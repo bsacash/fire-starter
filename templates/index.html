@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 
  {% block content %}
- <p>FireStarter</p>
- {{data}}
- {{data2}}
+   <p>FireStarter</p>
+
+   {% for  folder in folders %}
+      <a href="#">{{folder.title}}</a>
+   {% endfor %} 
+
+   {% for bookmark in bookmarks %}
+    <a href="{{ bookmark.url }}">{{bookmark.title}}</a>
+   {% endfor %}
+
  {% endblock %}
