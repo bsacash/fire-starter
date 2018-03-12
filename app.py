@@ -5,7 +5,7 @@ from helper import Bookmark, Folder
 
 app = Flask(__name__)
 
-@app.route('/',)
+@app.route('/')
 def index():
     db = read_config("config.config")
 
@@ -39,6 +39,12 @@ def index():
             pass
 
     return render_template('index.html', bookmarks=bookmarks, folders=folders)
+
+@app.route('/folder', methods=['POST'])
+def folder():
+    folder_id = request.form['folder_click'])
+
+    return (request.form['folder_click'])
 
 if __name__ == "__main__":
     app.run()

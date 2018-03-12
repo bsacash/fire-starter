@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 
- {% block content %}
-   <p>FireStarter</p>
+{% block content %}
+ <p>FireStarter</p>
 
-   {% for  folder in folders %}
-      <a href="#">{{folder.title}}</a>
-   {% endfor %} 
+ {% for  folder in folders %}
+    <form action="{{ url_for('folder') }}" method="post">
+      <input type="hidden" name="folder_click" value="{{folder.id}}">
+      <input type="submit" value="{{folder.title}}">
+    </form>
+ {% endfor %}
 
-   {% for bookmark in bookmarks %}
-    <a href="{{ bookmark.url }}">{{bookmark.title}}</a>
-   {% endfor %}
+ {% for bookmark in bookmarks %}
+  <a href="{{ bookmark.url }}">{{bookmark.title}}</a>
+ {% endfor %}
 
- {% endblock %}
+{% endblock %}

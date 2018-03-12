@@ -36,6 +36,13 @@ def read_config(file_name):
     path = f.read().split(',')[0]
     return path
 
+def get_contents(parent):
+    # Fetch all folder items in the parent folder
+    q = "SELECT id, type, parent, title from moz_bookmarks where parent == {0} and type==2;".format(parent)
+    folders = query(q,db,mode="all")
+    folders = [Folder(folder_id = f[0], title = f[3]) for f in folders]
+
+
 
 
 # fk = url lookup id in moz_places table (url_table)
