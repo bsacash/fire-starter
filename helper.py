@@ -49,7 +49,12 @@ def get_contents(parent, db):
 
     # Fetch Bookmark urls (batch)
     url_ids = tuple([bm.id for bm in bookmarks])
-    q = "SELECT id, url from moz_places WHERE id in {0}".format(url_ids)
+    if len(url_ids) == 0: # empty case
+        q = "SELECT id, url from moz_places WHERE id in ()"
+    elif len(url_ids) < 2: # handle 1-tuple
+        q = "SELECT id, url from moz_places WHERE id in ({0})".format(url_ids[0])
+    else:
+        q = "SELECT id, url from moz_places WHERE id in {0}".format(url_ids)
     r = query(q, db, mode="all")
     r = {entry[0]:entry[1] for entry in r}
 
