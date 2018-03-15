@@ -5,9 +5,9 @@
 
 <div class="featurette">
    <div class="featurette-inner text-center">
-      <form role="form" class="search has-button">
+      <form action="{{ url_for('search') }}" method="post" class="search has-button">
          <div class="form-group">
-            <input type="search" placeholder="Search" class="form-control form-control-lg">
+            <input type="search" placeholder="Search" name="search_input" class="form-control form-control-lg">
             <button class="btn btn-lg btn-warning" type="button">Search</button>
          </div>
          <!-- /form-group -->
