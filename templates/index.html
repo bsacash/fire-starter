@@ -3,11 +3,41 @@
 {% block content %}
 
 
+<!-- example 2 -->
+<div class="featurette">
+   <div class="featurette-inner text-center">
+      <form role="form" class="search has-button">
+         <div class="form-group">
+            <input type="search" placeholder="Search" class="form-control form-control-lg">
+            <button class="btn btn-lg btn-warning" type="button">Search</button>
+         </div>
+         <!-- /form-group -->
+      </form>
+      <!-- /.max-width on this form -->
+   </div>
+   <!-- /.featurette-inner (display:table-cell) -->
+</div>
+<!-- /.featurette (display:table) -->
+
+
+
+
+
+<!-- <div class="col-sm-4">
+    <div class="card innerbox">
+      <div class="card-block">
+        <h5 class="card-title">Special title treatment</h5>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div> -->
+
+
 
  {% for  folder in folders %}
-    <div class="col-lg">
+    {# <div class="col-lg">
       <a href="#" class="thumbnail">
-        <div class="frontpage_square">
+        <div class="">
 
           <form action="{{ url_for('folder') }}" method="post">
             <input type="hidden" name="folder_click" value="{{folder.id}}">
@@ -16,21 +46,35 @@
 
         </div>
       </a>
-    </div>
+    </div> #}
+
+
+      <div class="col-sm-2">
+        <div class="card innerbox bg-primary">
+          <div class="card-block">
+            <h6 class="card-title centering">{{folder.title}}</h6>
+            <form action="{{ url_for('folder') }}" method="post">
+              <input type="hidden" name="folder_click" value="{{folder.id}}">
+              <input type="submit" value="{{folder.title}}">
+            </form>
+          </div>
+        </div>
+      </div>
+
  {% endfor %}
 
- <div class="col-sm-4">
-     <a href="#" class="thumbnail">
-         <div class="frontpage_square">
-             <img src="" class="img img-responsive full-width" />
-         </div>
-     </a>
-</div>
+
 
  {% for bookmark in bookmarks %}
-
-    <a href="{{ bookmark.url }}">{{bookmark.title}}</a>
-
+  <div class="col-sm-2">
+   <a href="{{ bookmark.url }}">
+     <div class="card innerbox">
+       <div class="card-block">
+         <h6 class="card-title centering">{{bookmark.title}}</h6>
+       </div>
+     </div>
+   </a>
+  </div>
  {% endfor %}
 
 {% endblock %}
