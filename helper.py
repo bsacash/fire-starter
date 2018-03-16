@@ -1,4 +1,5 @@
 import sqlite3
+import tldextract
 
 class Folder:
     def __init__(self, folder_id, title, parent="None"):
@@ -67,6 +68,24 @@ def get_contents(parent, db):
             pass
 
     return (folders, bookmarks)
+
+# Check if a search string is a URL
+def url_or_search(string,base_search_url):
+    string_split = string.split()
+    if len(string_split) > 1:
+        return base_search_url + str(string)
+    elif len(string_split) == 1:
+        subdomain, domain, suffix =  tldextract.extract(string)
+        if suffix:
+            if subdomain: # ignores if an http is already present
+                return "https://" + str(string)
+            else:
+                return "https://www." + str(string)
+        else:
+            return base_search_url + str(string)
+    else:
+        return base_search_url + str(string)
+
 
 
 

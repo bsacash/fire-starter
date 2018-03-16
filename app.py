@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-from helper import query, read_config, get_contents
+from helper import query, read_config, get_contents, url_or_search
 
 from helper import Bookmark, Folder
 
@@ -24,8 +24,9 @@ def folder():
 @app.route('/search', methods=['POST'])
 def search():
     search_term = request.form['search_input']
-    suffix = "?q={0}".format(search_term)
-    return redirect("http://www.duckduckgo.com/" + suffix)
+    base_search_url = "http://www.duckduckgo.com/?q="
+    r = url_or_search(search_term, base_search_url)
+    return redirect(r)
 
 if __name__ == "__main__":
     app.run()
