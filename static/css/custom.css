@@ -4,22 +4,20 @@
 
 .folder-color{
   background: linear-gradient(to bottom right, rgba(35,45,180,.8),
-                                                rgba(20,160,135,.65),
-                                                rgba(35,140,180,.7)) !important;
+                                                rgba(20,150,150,.8),
+                                                rgba(35,140,180,.8)) !important;
 }
 
 .innerbox
 {
-   display:block;
-   height: 125px;
-
-   width:125px; /* or whatever width you want. */
-   max-width:125px; /* or whatever width you want. */
+   /* display:block; */
+   height: 120px;
+   width:120px; /* or whatever width you want. */
+   max-width:120px; /* or whatever width you want. */
    display: inline-block;
 
-   padding: 20px 20px 20px 20px;
-   margin: 20px 20px 20px 20px;
-   border: 20px 20px 20px 20px;
+   padding: 15px 15px 15px 15px;
+   margin: 10px 10px 10px 10px;
 }
 
 .centering {
