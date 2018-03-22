@@ -22,7 +22,7 @@
   <div class="col-lg-2 col-md-3 col-sm-4 col-6">
     <form action="{{ url_for('folder') }}" method="post">
       <input type="hidden" name="folder_click" value="{{folder.id}}">
-      <input class= "card innerbox bg-primary form-style" type="submit" value="{{folder.title}}">
+      <input class= "card innerbox folder-color form-style" type="submit" value="{{folder.title}}">
     </form>
   </div>
  {% endfor %}

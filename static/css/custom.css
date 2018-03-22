@@ -1,3 +1,13 @@
+.body{
+  background-image: url("static/images/22-00.jpg");
+}
+
+.folder-color{
+  background: linear-gradient(to bottom right, rgba(35,45,180,1),
+                                                rgba(20,160,135,.9),
+                                                rgba(35,140,180,.8)) !important;
+}
+
 .innerbox
 {
    display:block;
