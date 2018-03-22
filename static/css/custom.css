@@ -3,9 +3,9 @@
 }
 
 .folder-color{
-  background: linear-gradient(to bottom right, rgba(35,45,180,1),
-                                                rgba(20,160,135,.9),
-                                                rgba(35,140,180,.8)) !important;
+  background: linear-gradient(to bottom right, rgba(35,45,180,.8),
+                                                rgba(20,160,135,.65),
+                                                rgba(35,140,180,.7)) !important;
 }
 
 .innerbox
@@ -19,6 +19,7 @@
 
    padding: 20px 20px 20px 20px;
    margin: 20px 20px 20px 20px;
+   border: 20px 20px 20px 20px;
 }
 
 .centering {
