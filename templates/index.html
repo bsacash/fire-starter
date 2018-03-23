@@ -22,7 +22,10 @@
   <div class="col-lg-2 col-md-3 col-sm-4 col-6">
     <form action="{{ url_for('folder') }}" method="post">
       <input type="hidden" name="folder_click" value="{{folder.id}}">
-      <input class= "card innerbox folder-color form-style" type="submit" value="{{folder.title}}">
+      <input style = "background: linear-gradient(to bottom right, rgba({{folder.color_start[0]}},{{folder.color_start[1]}},{{folder.color_start[2]}}),
+                                                    rgba({{folder.color_mid[0]}},{{folder.color_mid[1]}},{{folder.color_mid[2]}}),
+                                                    rgba({{folder.color_end[0]}},{{folder.color_end[1]}},{{folder.color_end[2]}})) !important;"
+      class= "card innerbox form-style" type="submit" value="{{folder.title}}">
     </form>
   </div>
  {% endfor %}

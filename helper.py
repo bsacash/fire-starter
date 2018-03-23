@@ -1,11 +1,38 @@
 import sqlite3
 import tldextract
+import string
 
 class Folder:
     def __init__(self, folder_id, title, parent="None"):
         self.id = folder_id
         self.title = title
         self.parent = parent
+        self.color_start = [1,1,1]
+        self.color_mid = [1,1,1]
+        self.color_end = [1,1,1]
+
+    # Generate RGB values from title name
+    def colors(self):
+        try: # TODO account for strings of two letters or less
+            start = list(map(lambda x:x, self.title[:3].lower()))
+            end = list(map(lambda x:x, self.title[-3:].lower()))
+        except:
+            start = ["a","a","a"]
+            end = ["z","z","z"]
+
+        color_map = {char:int(str(index)+"5") for index, char in enumerate(string.ascii_lowercase)}
+        # TODO breaks on non ascii lowercase
+        start = list(map(lambda x: color_map[x],start))
+        end = list(map(lambda x: color_map[x],end))
+
+        # Generate middle RGB value that leads towards "end" RGB value
+        mid = list(map(lambda x:round(sum(x)/3), list(zip(start,end,end))))
+        self.color_start = start
+        self.color_mid = mid
+        self.color_end = end
+
+
+
 
 class Bookmark:
     def __init__(self, url_id, title, url="None", parent="None"):
