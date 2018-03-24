@@ -84,7 +84,7 @@ def read_config(file_name):
 def get_contents(parent, db):
     # Fetch parent folder name
     q = "SELECT title FROM moz_bookmarks WHERE id == {0}".format(parent)
-    parent_title = query(q,db,mode="all")
+    parent_title = query(q,db,mode="one")
 
     # Fetch all folder items in the parent folder
     q = "SELECT id, type, parent, title from moz_bookmarks where parent == {0} and type==2;".format(parent)
