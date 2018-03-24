@@ -13,25 +13,42 @@ class Folder:
 
     # Generate RGB values from title name
     def colors(self):
-        try: # TODO account for strings of two letters or less
-            start = list(map(lambda x:x, self.title[:3].lower()))
-            end = list(map(lambda x:x, self.title[-3:].lower()))
-        except:
-            start = ["a","a","a"]
-            end = ["z","z","z"]
+        temp_title = self.title
 
-        color_map = {char:int(str(index)+"5") for index, char in enumerate(string.ascii_lowercase)}
-        # TODO breaks on non ascii lowercase
-        start = list(map(lambda x: color_map[x],start))
-        end = list(map(lambda x: color_map[x],end))
+        # Handle 0 to 2 character cases
+        if temp_title is None:
+            temp_title = "zzz"
+        elif len(temp_title) == 2:
+            temp_title += "a"
+        elif len(temp_title) < 3:
+            temp_title += "aa"
+
+        start = list(map(lambda x:x, temp_title[:3].lower()))
+        end = list(map(lambda x:x, temp_title[-3:].lower()))
+
+        def shift(letter):
+            a, b = string.ascii_lowercase.split(letter)
+            z = b+a+letter
+            z = "".join(z)
+            return z
+
+        #r, x
+        # Translate characters to integers
+        color_map = {char:int(str(index)+"5") for index, char in enumerate(shift("x"))}
+        def color_index(color_map,char):
+            try:
+                return color_map[char]
+            except:
+                return 0
+
+        start = list(map(lambda x: color_index(color_map,x),start))
+        end = list(map(lambda x: color_index(color_map,x),end))
 
         # Generate middle RGB value that leads towards "end" RGB value
-        mid = list(map(lambda x:round(sum(x)/3), list(zip(start,end,end))))
+        mid = list(map(lambda x:round(sum(x)/3), list(zip(start,start,end))))
         self.color_start = start
         self.color_mid = mid
         self.color_end = end
-
-
 
 
 class Bookmark:

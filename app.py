@@ -16,8 +16,6 @@ def index():
     # generate colors for folders
     for f in folders:
         f.colors()
-        print(f.color_start)
-
 
     return render_template('index.html', bookmarks=bookmarks, folders=folders)
 
@@ -30,7 +28,6 @@ def folder():
     # generate colors for folders
     for f in folders:
         f.colors()
-        print(f.color_start)
 
     return render_template('index.html', bookmarks=bookmarks, folders=folders)
 
