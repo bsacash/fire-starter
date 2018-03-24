@@ -82,15 +82,19 @@ def read_config(file_name):
     return path
 
 def get_contents(parent, db):
+    # Fetch parent folder name
+    q = "SELECT title FROM moz_bookmarks WHERE id == {0}".format(parent)
+    parent_title = query(q,db,mode="all")
+
     # Fetch all folder items in the parent folder
     q = "SELECT id, type, parent, title from moz_bookmarks where parent == {0} and type==2;".format(parent)
     folders = query(q,db,mode="all")
-    folders = [Folder(folder_id = f[0], parent = f[2], title = f[3]) for f in folders]
+    folders = [Folder(folder_id = f[0], title = f[3]) for f in folders]
 
     # Fetch all bookmark items in the parent folder
     q = "SELECT id, type, fk, parent, title from moz_bookmarks where parent=={0} and type==1;".format(parent)
     bookmarks = query(q,db,mode="all")
-    bookmarks = [Bookmark(url_id = b[2], parent = b[3], title = b[4]) for b in bookmarks]
+    bookmarks = [Bookmark(url_id = b[2], title = b[4]) for b in bookmarks]
 
     # Fetch Bookmark urls (batch)
     url_ids = tuple([bm.id for bm in bookmarks])
@@ -111,7 +115,7 @@ def get_contents(parent, db):
         except:
             pass
 
-    return (folders, bookmarks)
+    return (folders, bookmarks, parent_title)
 
 # Check if a search string is a URL
 def url_or_search(string,base_search_url):

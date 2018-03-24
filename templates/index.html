@@ -4,7 +4,7 @@
 
 
 <div class="featurette">
-   <div class="featurette-inner text-center">
+   <div class="featurette-inner">
       <form action="{{ url_for('search') }}" method="post" class="search has-button">
          <div class="form-group">
             <input type="search" placeholder="Search" name="search_input" class="form-control form-control-lg" autofocus>
@@ -17,6 +17,9 @@
 </div>
 <!-- /.featurette (display:table) -->
 
+<div class="col-lg-12 center">
+  {{parent_title[0][0]}}
+</div>
 
  {% for  folder in folders %}
   <div class="col-lg-2 col-md-3 col-sm-4 col-6">

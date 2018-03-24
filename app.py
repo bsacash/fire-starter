@@ -11,25 +11,25 @@ def index():
     # Get Bookmarks Toolbar ID
     q = "SELECT id from moz_bookmarks where title == 'Bookmarks Toolbar';"
     master_id = query(q,db,mode="one")[0]
-    folders, bookmarks = get_contents(master_id, db)
+    folders, bookmarks, parent_title = get_contents(master_id, db)
 
     # generate colors for folders
     for f in folders:
         f.colors()
 
-    return render_template('index.html', bookmarks=bookmarks, folders=folders)
+    return render_template('index.html', bookmarks=bookmarks, folders=folders, parent_title=parent_title)
 
 @app.route('/folder', methods=['POST'])
 def folder():
     folder_id = request.form['folder_click']
     db = read_config("config.config")
-    folders, bookmarks = get_contents(folder_id,db)
+    folders, bookmarks, parent_title = get_contents(folder_id,db)
 
     # generate colors for folders
     for f in folders:
         f.colors()
 
-    return render_template('index.html', bookmarks=bookmarks, folders=folders)
+    return render_template('index.html', bookmarks=bookmarks, folders=folders, parent_title=parent_title)
 
 @app.route('/search', methods=['POST'])
 def search():
